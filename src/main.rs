@@ -1,9 +1,8 @@
-use crate::pid::pid_mod::init_pid;
-
 pub mod pid;
+use crate::pid::Pid;
 
 fn main() {
-    init_pid(1.0, 1.0, 1.0);
-
+    let mut pid = Pid::init(1.0, 1.0, 1.0);
+    pid.update(1, 0.5);
     println!("Hello, world!");
 }

@@ -1,25 +1,31 @@
-pub mod pid_mod {
-    pub struct PID {
-        p_gain: f32,
-        i_gain: f32,
-        d_gain: f32,
+pub trait Pid {
+    fn init(p: f32, i: f32, d: f32) -> Self;
+    fn update(&mut self, target: f32, error: f32);
+}
 
-        proportional: f32,
-        integral: f32,
-        derivative: f32,
-    }
+pub struct PID_s {
+    p_gain: f32,
+    i_gain: f32,
+    d_gain: f32,
 
-    pub fn init_pid(p_gain: f32, i_gain: f32, d_gain: f32) -> PID {
-        PID {
-            p_gain: p_gain,
-            i_gain: i_gain,
-            d_gain: d_gain,
+    proportional: f32,
+    integral: f32,
+    derivative: f32,
+}
 
+impl Pid for PID_s {
+    fn init(p: f32, i: f32, d: f32) -> Self {
+        PID_s {
+            p_gain: p,
+            i_gain: i,
+            d_gain: d,
             proportional: 1.0,
             integral: 0.0,
             derivative: 0.0,
         }
     }
 
-    pub fn update_pid() {}
+    fn update(&mut self, target: f32, error: f32) {
+
+    }
 }
